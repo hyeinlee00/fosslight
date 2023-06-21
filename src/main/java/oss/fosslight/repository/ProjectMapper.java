@@ -81,6 +81,8 @@ public interface ProjectMapper {
 	
 	List<Project> getProjectNameList(Project project);
 	
+	List<Project> getProjectIdList(Project project);
+	
 	List<Project> getProjectModelNameList();
 	
 	List<OssComponents> selectComponentId(ProjectIdentification prj);
@@ -359,7 +361,6 @@ public interface ProjectMapper {
 
 	List<OssComponents> getSecurityDataList(ProjectIdentification identification);
 
-
 	int existsWatcherByUserDivistion(Project project);
 
 	void updateWatcherDivision(Project project);
@@ -369,4 +370,8 @@ public interface ProjectMapper {
 	List<String> selectVulnInfoForIdentification(@Param("vendorProduct")String vendorProduct, @Param("version")String version);
 	
 	int getSecurityDataCntByProject(Project project);
+	
+	public List<OssComponents> selectOssComponentsSbomList(ProjectIdentification identification);
+
+	public List<OssComponents> selectOssComponentsListClassAppend(ProjectIdentification identification);
 }
