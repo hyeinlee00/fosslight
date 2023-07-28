@@ -7,17 +7,22 @@ SPDX-License-Identifier: AGPL-3.0-only
 </p>
 
 
-## [1.6.0](https://github.com/fosslight/fosslight/releases/tag/v1.6.0) (2023-06-05)
+## [1.6.0](https://github.com/fosslight/fosslight/releases/tag/v1.6.0) (2023-07-28)
 
 ### New
-* Add **the Security tab**. You can check the vulnerability information by each CVE ID of OSS lists which has vulnerabilities based on the BOM tab of the Identification step and manage it for each project.
-* Available to [upgrade DB version](https://fosslight.org/fosslight-guide/features/3_maintenance.html#db-%EB%B2%84%EC%A0%84-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C%ED%95%98%EA%B8%B0) using MyBatis Migrations.
+* Add **[the Security tab](https://fosslight.org/fosslight-guide-en/started/2_try/5_security.html)**. You can check the vulnerability information by each CVE ID of OSS lists which has vulnerabilities based on the BOM tab of the Identification step and manage it for each project.
+* Available to [upgrade DB version](https://fosslight.org/fosslight-guide-en/features/3_maintenance.html#upgrading-the-db-version) using MyBatis Migrations.
 * Add the reset password button.
 * Add the API([/api/v1/export_selfcheck](https://fosslight.org/fosslight-guide-en/features/2_rest_api.html#rest-api-list)) that can download the result file exported from the Self-Check project
 * Add a **Bulk registration** button to the License List. Multiple Licenses can be saved at once by entering License information in the spread sheet and uploading it.
-* Add **description** to search condition in 3rd party list
+* Add a **OSS Bulk Registration** button to the 3rd party. Multiple OSS can be saved at once by entering OSS information in the spread sheet and uploading it.
+* Homepage information is added to the OSS table of Self-Check tab.
+* New features have been added to the Identification tab, allowing users to search for 3rd parties  and projects using their ID for Search function.
+
 ### Changed
 * When export the FOSSLight report, the items from 3rd party software are described as the form of "3rd-(3rd Party Name)" in the "From" column of BOM tab.
+* Changes have been made to the Project, 3rd party, and Self-check tabs, where excluded OSS with the "exclude" checkbox will no longer display security vulnerabilities. If the OSS is excluded, it will be excluded when calculating max vulnerability score at the each List tab.
+
 
 ## [1.4.6](https://github.com/fosslight/fosslight/releases/tag/v1.4.6) (2022-07-22)
 ### New
