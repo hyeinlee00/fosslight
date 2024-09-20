@@ -1241,4 +1241,44 @@ public class ApiProjectV2Controller extends CoTopComponent {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @ApiOperation(value = "Export Security Tab as Json", notes = "Project > Security tab Export")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "authorization", value = "token", required = true, dataType = "String", paramType = "header")
+    })
+    @GetMapping(value = {APIV2.FOSSLIGHT_API_PROJECT_SECURITY_EXPORT_JSON+"/test"})
+    public ResponseEntity<Map<String, Object>> getPrjSecurityExportJson(
+            @RequestHeader String authorization,
+            @ApiParam(value= "Project id", required=true) @PathVariable(name = "id") String prjId) {
+
+        log.error("OPENSOURCE :: /api/v2/prj_security_export_json called:" + prjId);
+
+        T2Users userInfo = userService.checkApiUserAuth(authorization);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+
+        try {
+            List<String> prjIdList = new ArrayList<String>();
+            prjIdList.add(prjId);
+
+            Map<String, Object> paramMap = new HashMap<String, Object>();
+            paramMap.put("userId", userInfo.getUserId());
+            paramMap.put("userRole", userRole(userInfo));
+            paramMap.put("prjId", prjIdList);
+            paramMap.put("distributionType", "normal");
+
+            boolean searchFlag = apiProjectService.existProjectCnt(paramMap);
+
+            if (!searchFlag) {
+                return responseService.errorResponse(HttpStatus.NOT_FOUND,
+                        String.format("Project %s not exist or User doesn't have permission for the project", prjId));
+            }
+
+            resultMap = apiProjectService.getPrjSecurityExportJson(prjId);
+
+            return ResponseEntity.ok(resultMap);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return responseService.errorResponse(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -88,4 +88,5 @@ public interface ApiProjectService {
 
 	public Map<String, Object> registProjectOssComponent(Map<String, Object> param, String referenceDiv);
 
+	public Map<String, Object> getPrjSecurityExportJson(String prjId);
 }

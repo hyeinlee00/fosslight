@@ -225,6 +225,7 @@ public interface ProjectService extends HistoryConfig{
 	public void deletePreparedStatement(List<OssComponents> componentIds);
 
 	public void setLoadToList(Map<String, Object> map, String prjId);
+
 }
 
 

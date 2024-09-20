@@ -3410,4 +3410,25 @@ public class ApiProjectServiceImpl extends CoTopComponent implements ApiProjectS
 
 	    return responseMap;
 	}
+
+	@Override
+	public Map<String, Object> getPrjSecurityExportJson(String prjId) {
+		Map<String, Object> rtnMap = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		Project project = new Project();
+		project.setPrjId(prjId);
+
+		try {
+			result = projectService.getSecurityGridList(project);
+			rtnMap.put("totalGridData", (List<OssComponents>) result.get("totalList"));
+			if (result.containsKey("msg")) {
+				rtnMap.put("msg", result.get("msg"));
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+
+		return rtnMap;
+	}
 }
